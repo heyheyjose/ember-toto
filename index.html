@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -14,7 +15,8 @@
 						{{edit-todo class="edit" value=title focus-out="acceptChanges" insert-newline="acceptChanges"}}
 					{{else}}
 						{{input type="checkbox" checked=isCompleted class="toggle"}}
-						<label {{action "editTodo" on="doubleClick"}}>{{title}}</label><button {{action "removeTodo"}} class="destroy"></button>
+						<label {{action "editTodo" on="doubleClick"}}>{{title}}</label>
+						<button {{action "removeTodo"}} class="destroy"></button>
 					{{/if}}
 				</li>
 			{{/each}}
@@ -23,11 +25,12 @@
 
 	<script type="text/x-handlebars" data-template-name="todos">
 
-		<img src="barking-dog-512.png" alt="fido!">
+		<a href="index.html"><img src="barking-dog-512.png" alt="fido!"></a>
+
 		<section id="todoapp">
 
 			<header id="header">
-				<h1>fido</h1>
+				<a href="index.html"><h1>fido</h1></a>
 				{{input type="text" id="new-todo" placeholder="does it" value=newTitle action="createTodo"}}
 			</header>
 
@@ -55,7 +58,12 @@
 					</li>
 				</ul>
 
-				<button id="clear-completed">Clear completed (1)</button>
+				{{#if hasCompleted}}
+					<button id="clear-completed" {{action "clearCompleted"}}>
+						Clear completed ({{completed}})
+					</button>
+				{{/if}}
+
 			</footer>
 
 		</section>
